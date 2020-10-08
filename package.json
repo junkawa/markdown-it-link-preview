@@ -1,0 +1,39 @@
+{
+  "name": "markdown-it-link-preview",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "jest",
+    "example": "node examples/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junkawa/markdown-it-link-preview.git"
+  },
+  "keywords": [
+    "markdown",
+    "markdown-it",
+    "markdown-it-plugin",
+    "link",
+    "preview",
+    "open graph"
+  ],
+  "author": "junkawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/junkawa/markdown-it-link-preview/issues"
+  },
+  "homepage": "https://github.com/junkawa/markdown-it-link-preview#readme",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "jest": "^26.4.2",
+    "markdown-it": "^11.0.1"
+  },
+  "dependencies": {
+    "deasync-promise": "^1.0.1",
+    "jsdom": "^16.4.0"
+  }
+}

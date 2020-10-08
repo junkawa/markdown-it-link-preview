@@ -1,0 +1,19 @@
+{
+    "env": {
+        "node": true,
+        "jest/globals": true
+    },
+    "plugins": [
+        "jest"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "google"
+    ],
+    "rules": {
+        "require-jsdoc": "off"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020
+    }
+}
