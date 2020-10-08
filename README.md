@@ -40,12 +40,7 @@ result
 
 ## CSS sample
 
-<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="css,result" data-user="junkawa" data-slug-hash="dyXywyj" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="markdown-it-link-preview">
-  <span>See the Pen <a href="https://codepen.io/junkawa/pen/dyXywyj">
-  markdown-it-link-preview</a> by junkawa (<a href="https://codepen.io/junkawa">@junkawa</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+![Screenshot](https://user-images.githubusercontent.com/5635944/95469258-6a7bd700-09ba-11eb-9b19-54dcf86a6de6.png)
 
 ``` css
 .link-preview-widget
