@@ -1,7 +1,7 @@
 {
   "name": "markdown-it-link-preview",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Markdown-it plugin to include link preview in your document",
   "main": "",
   "scripts": {
     "test": "jest",
