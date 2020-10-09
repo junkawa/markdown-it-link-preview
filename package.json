@@ -7,6 +7,9 @@
     "test": "jest",
     "example": "node examples/index.js"
   },
+  "scriptsComment": {
+    "example": "npm run example -- https://www.youtube.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/junkawa/markdown-it-link-preview.git"
