@@ -36,7 +36,6 @@
     "markdown-it": "^11.0.1"
   },
   "dependencies": {
-    "deasync-promise": "^1.0.1",
     "jsdom": "^16.4.0"
   }
 }

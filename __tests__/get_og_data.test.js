@@ -1,12 +1,6 @@
 // workaround for "Encoding not recognized: 'UTF-8' (searched as: 'utf8')"
 require('../node_modules/iconv-lite').encodingExists('foo');
 
-jest.mock('deasync-promise');
-const deasyncPromise = require('deasync-promise');
-deasyncPromise.mockImplementation((promise) => {
-  return promise;
-});
-
 beforeEach(() => {
   jest.mock('jsdom', () => {
     const actualJsdom = jest.requireActual('jsdom');

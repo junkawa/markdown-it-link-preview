@@ -1,10 +1,9 @@
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
-const deasyncPromise = require('deasync-promise');
 
 function getOgData(url) {
   try {
-    const dom = deasyncPromise(JSDOM.fromURL(url));
+    const dom = JSDOM.fromURL(url);
     // console.log(dom.serialize());
     const doc = dom.window.document;
     const ogData = {};
