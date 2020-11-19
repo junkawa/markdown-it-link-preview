@@ -36,6 +36,7 @@
     "markdown-it": "^11.0.1"
   },
   "dependencies": {
-    "jsdom": "^16.4.0"
+    "jsdom": "^16.4.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }

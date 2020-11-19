@@ -1,30 +1,13 @@
 // workaround for "Encoding not recognized: 'UTF-8' (searched as: 'utf8')"
 require('../node_modules/iconv-lite').encodingExists('foo');
 
-beforeEach(() => {
-  jest.mock('jsdom', () => {
-    const actualJsdom = jest.requireActual('jsdom');
-    const {JSDOM} = actualJsdom;
+let mockHtml = '';
+function __setMockHtml(newMockHtml) {
+  mockHtml = newMockHtml;
+}
 
-    let mockHtml = '';
-    function __setMockHtml(newMockHtml) {
-      mockHtml = newMockHtml;
-    }
-    function fromURL(url) {
-      return new JSDOM(mockHtml);
-    }
-
-    JSDOM.fromURL = jest.fn().mockImplementation(fromURL);
-    return {
-      ...actualJsdom,
-      __setMockHtml: __setMockHtml,
-    };
-  });
-});
-
-afterEach(() => {
-  jest.unmock('jsdom');
-  //  jest.resetModules();
+jest.mock('../src/get_html_sync', () => {
+  return jest.fn(() => mockHtml);
 });
 
 it('get og:title,og:description,og:site_name,og:url,og:image', () => {
@@ -45,7 +28,7 @@ it('get og:title,og:description,og:site_name,og:url,og:image', () => {
     '</head>' +
     '</html>';
   /* eslint-enable max-len */
-  require('jsdom').__setMockHtml(MOCK_HTML);
+  __setMockHtml(MOCK_HTML);
 
   const getOgData = require('../src/get_og_data');
   const ogData = getOgData('https://hoge');
@@ -77,7 +60,7 @@ it('get title,description,og:site_name,og:url,og:image', () => {
     '<meta property="og:url" content="http://help.figma.com/hc/en-us/articles/360039832014" />' +
     '</head>' +
     '</html>';
-  require('jsdom').__setMockHtml(MOCK_HTML);
+  __setMockHtml(MOCK_HTML);
 
   const getOgData = require('../src/get_og_data');
   const ogData = getOgData('https://hoge');
@@ -111,7 +94,7 @@ it('get description,url', () => {
     '<meta property="og:site_name" content="Figma" />' +
     '</head>' +
     '</html>';
-  require('jsdom').__setMockHtml(MOCK_HTML);
+  __setMockHtml(MOCK_HTML);
 
   const getOgData = require('../src/get_og_data');
   const ogData = getOgData('https://hoge');

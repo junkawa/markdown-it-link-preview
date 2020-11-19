@@ -1,16 +1,21 @@
+const getHtmlSync = require('./get_html_sync');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
-function getHtmlSync(url) {}
-
 function getOgData(url) {
+  const ogData = {};
+  ogData.title = '';
+  ogData.description = '';
+  ogData.image = '';
+  ogData.site_name = '';
+  ogData.url = url;
+
   try {
     // const dom = JSDOM.fromURL(url);
     const html = getHtmlSync(url);
     const dom = new JSDOM(html);
     // console.log(dom.serialize());
     const doc = dom.window.document;
-    const ogData = {};
 
     // title
     const titleSelector = doc.querySelector('title');
@@ -62,12 +67,10 @@ function getOgData(url) {
       urlMetaSelector != null ? urlMetaSelector.content : undefined;
     // const urlMeta = doc.querySelector('meta[property="og:url"]')?.content;
     ogData.url = urlMeta ? urlMeta : url;
-
-    return ogData;
   } catch (error) {
-    console.log('Error:', error);
-    return '';
+    console.log('Error: ', error);
   }
+  return ogData;
 }
 
 module.exports = getOgData;
