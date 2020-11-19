@@ -1,9 +1,13 @@
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
+function getHtmlSync(url) {}
+
 function getOgData(url) {
   try {
-    const dom = JSDOM.fromURL(url);
+    // const dom = JSDOM.fromURL(url);
+    const html = getHtmlSync(url);
+    const dom = new JSDOM(html);
     // console.log(dom.serialize());
     const doc = dom.window.document;
     const ogData = {};
@@ -12,8 +16,8 @@ function getOgData(url) {
     const titleSelector = doc.querySelector('title');
     const title = titleSelector != null ? titleSelector.textContent : undefined;
     const titleMetaSelector = doc.querySelector('meta[property="og:title"]');
-    const titleMeta = titleMetaSelector != null ?
-      titleMetaSelector.content : undefined;
+    const titleMeta =
+      titleMetaSelector != null ? titleMetaSelector.content : undefined;
     // const title = doc.querySelector('title')?.textContent;
     // const titleMeta =
     //   doc.querySelector('meta[property="og:title"]')?.content;
@@ -29,32 +33,33 @@ function getOgData(url) {
     // desc = desc ?
     //   desc :
     //   doc.querySelector('meta[name="Description"]')?.content;
-    const descMetaSelector =
-      doc.querySelector('meta[property="og:description"]');
-    const descMeta = descMetaSelector != null ?
-      descMetaSelector.content : undefined;
+    const descMetaSelector = doc.querySelector(
+        'meta[property="og:description"]',
+    );
+    const descMeta =
+      descMetaSelector != null ? descMetaSelector.content : undefined;
     // const descMeta = doc.querySelector('meta[property="og:description"]')
     //    ?.content;
     ogData.description = descMeta ? descMeta : desc;
 
     // image
     const imageMetaSelector = doc.querySelector('meta[property="og:image"]');
-    ogData.image = imageMetaSelector != null ?
-      imageMetaSelector.content : undefined;
+    ogData.image =
+      imageMetaSelector != null ? imageMetaSelector.content : undefined;
     // ogData.image = doc.querySelector('meta[property="og:image"]')?.content;
 
     // site_name
     const siteMetaSelector = doc.querySelector('meta[property="og:site_name"]');
-    ogData.site_name = siteMetaSelector != null ?
-      siteMetaSelector.content : undefined;
+    ogData.site_name =
+      siteMetaSelector != null ? siteMetaSelector.content : undefined;
     // ogData.site_name = doc.querySelector(
     //     'meta[property="og:site_name"]',
     // )?.content;
 
     // url
     const urlMetaSelector = doc.querySelector('meta[property="og:url"]');
-    const urlMeta = urlMetaSelector != null ?
-      urlMetaSelector.content : undefined;
+    const urlMeta =
+      urlMetaSelector != null ? urlMetaSelector.content : undefined;
     // const urlMeta = doc.querySelector('meta[property="og:url"]')?.content;
     ogData.url = urlMeta ? urlMeta : url;
 

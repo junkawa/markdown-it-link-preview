@@ -3,25 +3,34 @@ const getOgData = require('./get_og_data');
 function linkPreviewHtml(ogData) {
   return (
     '<div class="link-preview-widget">' +
-      '<a ' +
-        'href="' + ogData.url + '" ' +
-        'rel="noopener" ' +
-        'target="_blank"' +
-      '>' +
-        '<div class="link-preview-widget-title">' + ogData.title +
-        '</div>' +
-        '<div class="link-preview-widget-description">' +
-          ogData.description +
-        '</div>' +
-        '<div class="link-preview-widget-url">'+ogData.site_name+'</div>' +
-      '</a>' +
-      '<a ' +
-        'class="link-preview-widget-image" ' +
-        'href="'+ogData.url+'" ' +
-        'rel="noopener" ' +
-        'style="background-image: url(\''+ogData.image+'\');" ' +
-        'target="_blank"' +
-      '></a>' +
+    '<a ' +
+    'href="' +
+    ogData.url +
+    '" ' +
+    'rel="noopener" ' +
+    'target="_blank"' +
+    '>' +
+    '<div class="link-preview-widget-title">' +
+    ogData.title +
+    '</div>' +
+    '<div class="link-preview-widget-description">' +
+    ogData.description +
+    '</div>' +
+    '<div class="link-preview-widget-url">' +
+    ogData.site_name +
+    '</div>' +
+    '</a>' +
+    '<a ' +
+    'class="link-preview-widget-image" ' +
+    'href="' +
+    ogData.url +
+    '" ' +
+    'rel="noopener" ' +
+    'style="background-image: url(\'' +
+    ogData.image +
+    '\');" ' +
+    'target="_blank"' +
+    '></a>' +
     '</div>'
   );
 }

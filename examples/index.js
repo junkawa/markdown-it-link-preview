@@ -5,10 +5,7 @@ if (process.argv.length === 2) {
   url = process.argv[2];
 }
 
-
 const linkPreviewPlugin = require('../src/index');
 const md = require('markdown-it')().use(linkPreviewPlugin);
-const result = md.render(
-    '[@preview]('+url+')',
-);
+const result = md.render('[@preview](' + url + ')');
 console.log(result);
