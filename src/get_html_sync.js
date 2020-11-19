@@ -8,13 +8,13 @@ function getHtmlSync(url) {
     xhr.open('GET', url, false);
     xhr.send();
   } catch (err) {
-    throw new Error('XMLHttpRequest(' + url + ') failed ' + err);
+    throw new Error('XMLHttpRequest(' + url + ') failed. ' + err);
   }
 
   if (xhr.status != 200) {
     const statusText = xhr.statusText ? xhr.statusText : '';
     throw new Error(
-        'XMLHttpRequest(' + url + ') ' + xhr.status + ' ' + statusText,
+        'XMLHttpRequest(' + url + ') status:' + xhr.status + ' ' + statusText,
     );
   }
   return xhr.responseText;
