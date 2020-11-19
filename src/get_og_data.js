@@ -4,11 +4,6 @@ const {JSDOM} = jsdom;
 
 function getOgData(url) {
   const ogData = {};
-  ogData.title = '';
-  ogData.description = '';
-  ogData.image = '';
-  ogData.site_name = '';
-  ogData.url = url;
 
   try {
     // const dom = JSDOM.fromURL(url);
@@ -68,8 +63,15 @@ function getOgData(url) {
     // const urlMeta = doc.querySelector('meta[property="og:url"]')?.content;
     ogData.url = urlMeta ? urlMeta : url;
   } catch (error) {
-    console.log('Error: ', error);
+    console.log(error);
   }
+
+  if (!ogData.title) ogData.title = '';
+  if (!ogData.description) ogData.description = '';
+  if (!ogData.image) ogData.image = '';
+  if (!ogData.site_name) ogData.site_name = '';
+  if (!ogData.url) ogData.url = url;
+
   return ogData;
 }
 

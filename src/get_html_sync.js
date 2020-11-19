@@ -8,11 +8,14 @@ function getHtmlSync(url) {
     xhr.open('GET', url, false);
     xhr.send();
   } catch (err) {
-    throw new Error('XMLHttpRequest failed: ', err);
+    throw new Error('XMLHttpRequest(' + url + ') failed ' + err);
   }
 
   if (xhr.status != 200) {
-    throw new Error('XMLHttpRequest ', xhr.status, ' ', xhr.statusText);
+    const statusText = xhr.statusText ? xhr.statusText : '';
+    throw new Error(
+        'XMLHttpRequest(' + url + ') ' + xhr.status + ' ' + statusText,
+    );
   }
   return xhr.responseText;
 }

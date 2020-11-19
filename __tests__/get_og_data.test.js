@@ -104,11 +104,3 @@ it('get description,url', () => {
   expect(ogData.url).toBe('https://hoge');
   /* eslint-enable max-len */
 });
-
-it.skip('error when invalid url', () => {
-  jest.unmock('jsdom');
-  const getOgData = require('../src/get_og_data');
-  const ogData = getOgData('https://hoge');
-  // const ogData = getOgData('https://www.youtube.com');
-  expect(ogData).toBe('');
-});
