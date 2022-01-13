@@ -1,33 +1,54 @@
 const getOgData = require('./get_og_data');
 
+const HTML_ESCAPE_REPLACE_RE = /[&<>"']/g;
+const HTML_REPLACEMENTS = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+};
+
+function replaceUnsafeChar(ch) {
+  return HTML_REPLACEMENTS[ch];
+}
+
+function escapeHtml(str) {
+  return str.replace(HTML_ESCAPE_REPLACE_RE, replaceUnsafeChar);
+}
+
+function unescapeHtml(str) {
+  return str.replace(/&quot;/g, '"').replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+
 function linkPreviewHtml(ogData) {
   return (
     '<div class="link-preview-widget">' +
     '<a ' +
     'href="' +
-    ogData.url +
+    escapeHtml(unescapeHtml(ogData.url)) +
     '" ' +
     'rel="noopener" ' +
     'target="_blank"' +
     '>' +
     '<div class="link-preview-widget-title">' +
-    ogData.title +
+    escapeHtml(unescapeHtml(ogData.title)) +
     '</div>' +
     '<div class="link-preview-widget-description">' +
-    ogData.description +
+    escapeHtml(unescapeHtml(ogData.description)) +
     '</div>' +
     '<div class="link-preview-widget-url">' +
-    ogData.site_name +
+    escapeHtml(unescapeHtml(ogData.site_name)) +
     '</div>' +
     '</a>' +
     '<a ' +
     'class="link-preview-widget-image" ' +
     'href="' +
-    ogData.url +
+    escapeHtml(unescapeHtml(ogData.url)) +
     '" ' +
     'rel="noopener" ' +
     'style="background-image: url(\'' +
-    ogData.image +
+    escapeHtml(unescapeHtml(ogData.image)) +
     '\');" ' +
     'target="_blank"' +
     '></a>' +
