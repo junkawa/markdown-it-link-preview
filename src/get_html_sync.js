@@ -1,7 +1,11 @@
 const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-function getHtmlSync(url) {
+function getHtmlSync(url, redirectLimit = 5) {
   // TODO url check
+
+  if (redirectLimit <= 0) {
+    throw new Error('Too many redirects');
+  }
 
   const xhr = new XMLHttpRequest();
   try {
@@ -14,12 +18,12 @@ function getHtmlSync(url) {
 
   if (xhr.readyState === 4 && (xhr.status === 301 || xhr.status === 302)) {
     const redirectUrl = xhr.getResponseHeader('Location');
-    return getHtmlSync(redirectUrl);
+    return getHtmlSync(redirectUrl, redirectLimit - 1);
   }
   if (xhr.status != 200) {
     const statusText = xhr.statusText ? xhr.statusText : '';
     throw new Error(
-        'XMLHttpRequest(' + url + ') status:' + xhr.status + ' ' + statusText,
+      'XMLHttpRequest(' + url + ') status:' + xhr.status + ' ' + statusText,
     );
   }
   return xhr.responseText;
