@@ -16,14 +16,17 @@ function getHtmlSync(url, redirectLimit = 5) {
     throw new Error('XMLHttpRequest(' + url + ') failed. ' + err);
   }
 
-  if (xhr.readyState === 4 && (xhr.status === 301 || xhr.status === 302)) {
+  if (xhr.readyState === xhr.DONE &&
+    (xhr.status === 301 || xhr.status === 302 || xhr.status === 303 ||
+      xhr.status === 307 || xhr.status === 308)) {
     const redirectUrl = xhr.getResponseHeader('Location');
     return getHtmlSync(redirectUrl, redirectLimit - 1);
   }
+
   if (xhr.status != 200) {
     const statusText = xhr.statusText ? xhr.statusText : '';
     throw new Error(
-      'XMLHttpRequest(' + url + ') status:' + xhr.status + ' ' + statusText,
+        'XMLHttpRequest(' + url + ') status:' + xhr.status + ' ' + statusText,
     );
   }
   return xhr.responseText;
