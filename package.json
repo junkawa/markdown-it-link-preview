@@ -33,7 +33,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^24.4.2",
     "jest": "^30.3.0",
-    "markdown-it": "^12.3.2"
+    "markdown-it": "^14.3.0"
   },
   "dependencies": {
     "jsdom": "^29.0.2",
